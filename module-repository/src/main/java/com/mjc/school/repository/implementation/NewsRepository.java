@@ -1,4 +1,4 @@
-package com.mjc.school.repository.implimentation;
+package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.datasources.Datasource;
 import com.mjc.school.repository.interfaces.NewsRepositoryInterface;
@@ -16,7 +16,7 @@ public class NewsRepository implements NewsRepositoryInterface {
         newsList.addAll(Datasource.getInstance().getNewsAll());
     }
     @Override
-    public List<News> readAllNews() {
+    public List<News> readAll() {
         return newsList;
     }
 

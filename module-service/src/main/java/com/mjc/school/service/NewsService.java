@@ -1,6 +1,6 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.implimentation.NewsRepository;
+import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.interfaces.NewsServiceInterface;
@@ -16,7 +16,7 @@ public class NewsService implements NewsServiceInterface {
 
     @Override
     public List<NewsDto> readAllNews() {
-        return this.newsMapper.getModelListFromEntityList(newsRepository.readAllNews());
+        return this.newsMapper.getModelListFromEntityList(newsRepository.readAll());
     }
 
     @Override

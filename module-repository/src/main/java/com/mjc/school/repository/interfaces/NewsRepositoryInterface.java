@@ -5,7 +5,7 @@ import com.mjc.school.repository.model.News;
 import java.util.List;
 
 public interface NewsRepositoryInterface {
-    List<News> readAllNews();
+    List<News> readAll();
     News readById(long id);
     News create(News news);
     News update(News news);
