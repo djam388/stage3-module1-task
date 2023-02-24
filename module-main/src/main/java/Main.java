@@ -1,6 +1,5 @@
-import com.mjc.school.repository.model.News;
+
 import com.mjc.school.service.NewsService;
-import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.menu.Menu;
 import com.mjc.shool.contoller.operation.Command;
 import com.mjc.shool.contoller.NewsController;

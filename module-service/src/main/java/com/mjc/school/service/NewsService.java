@@ -1,6 +1,6 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.NewsRepository;
+import com.mjc.school.repository.implimentation.NewsRepository;
 import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.interfaces.NewsServiceInterface;
