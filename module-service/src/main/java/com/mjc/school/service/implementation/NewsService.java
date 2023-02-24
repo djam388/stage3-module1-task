@@ -1,7 +1,7 @@
-package com.mjc.school.service;
+package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.implementation.NewsRepository;
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.service.dto.News;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.interfaces.NewsServiceInterface;
 import org.mapstruct.factory.Mappers;
@@ -15,32 +15,33 @@ public class NewsService implements NewsServiceInterface {
     private NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
 
     @Override
-    public List<NewsDto> readAllNews() {
+    public List<News> readAll() {
         return this.newsMapper.getModelListFromEntityList(newsRepository.readAll());
     }
 
     @Override
-    public NewsDto readById(long id) {
+    public News readBy(long id) {
         return this.newsMapper.getModelFromEntity(newsRepository.readById(id));
     }
 
     @Override
-    public NewsDto create(NewsDto newsDto) {
-        setDateTime(newsDto, true);
-        newsDto = this.newsMapper.getModelFromEntity(newsRepository.create(this.newsMapper.getEntityFromModel(newsDto)));
-        return newsDto;
+    public News create(News news) {
+        setDateTime(news, true);
+        news = this.newsMapper.getModelFromEntity(newsRepository.create(this.newsMapper.getEntityFromModel(news)));
+        return news;
     }
 
     @Override
-    public NewsDto update(NewsDto newsDto) {
-        setDateTime(newsDto, false);
-        newsDto.setId(newsRepository.update(this.newsMapper.getEntityFromModel(newsDto)).getId());
-        return newsDto;
+    public News update(News news) {
+        setDateTime(news, false);
+        news.setId(newsRepository.update(this.newsMapper.getEntityFromModel(news)).getId());
+        return news;
     }
 
     @Override
     public boolean delete(long id) {
-        if (readAllNews().size() <= (int) id) {
+
+        if (readAll().size() >= (int) id) {
             newsRepository.delete(id - 1);
             return true;
         }
@@ -54,16 +55,16 @@ public class NewsService implements NewsServiceInterface {
         return true;
     }
 
-    private void setDateTime(NewsDto newsDto, boolean newRecord) {
+    private void setDateTime(News news, boolean newRecord) {
         if (newRecord) {
             LocalDateTime localDateTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-            newsDto.setCreateDate(localDateTime);
-            newsDto.setLastUpdateDate(localDateTime);
+            news.setCreateDate(localDateTime);
+            news.setLastUpdateDate(localDateTime);
         }
         else {
-            NewsDto originalNewsDto = readById(newsDto.getId() - 1);
-            newsDto.setCreateDate(originalNewsDto.getCreateDate());
-            newsDto.setLastUpdateDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+            News originalNews = readBy(news.getId() - 1);
+            news.setCreateDate(originalNews.getCreateDate());
+            news.setLastUpdateDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         }
 
     }

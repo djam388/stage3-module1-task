@@ -2,7 +2,7 @@ package com.mjc.school.service.dto;
 
 import java.time.LocalDateTime;
 
-public class NewsDto {
+public class News {
     private long id;
     private String title;
     private String content;

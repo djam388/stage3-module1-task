@@ -1,14 +1,14 @@
 package com.mjc.school.service.interfaces;
 
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.service.dto.News;
 
 import java.util.List;
 
 public interface NewsServiceInterface {
 
-    List<NewsDto> readAllNews();
-    NewsDto readById(long id);
-    NewsDto create(NewsDto newsDto);
-    NewsDto update(NewsDto newsDto);
+    List<News> readAll();
+    News readBy(long id);
+    News create(News news);
+    News update(News news);
     boolean delete(long id);
 }

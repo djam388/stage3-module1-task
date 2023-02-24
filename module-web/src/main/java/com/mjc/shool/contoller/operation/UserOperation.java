@@ -1,6 +1,6 @@
 package com.mjc.shool.contoller.operation;
 
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.service.dto.News;
 import com.mjc.shool.contoller.NewsController;
 
 import java.util.Scanner;
@@ -11,38 +11,38 @@ public class UserOperation {
         switch (command) {
              case ShowNewsList -> {
                  System.out.println("Operation: Get all news.");
-                 NewsController.getInstance().readAllNews().forEach(System.out::println);
+                 NewsController.getInstance().readAll().forEach(System.out::println);
              }
             case ShowNewsById -> {
                 System.out.println("Operation: Get news by id.");
                 System.out.println("Enter news id:" );
                 Scanner enteredValue = new Scanner(System.in);
                 long id = enteredValue.nextLong();
-                System.out.println(NewsController.getInstance().readById(id));
+                System.out.println(NewsController.getInstance().readBy(id));
             }
             case CreateNews -> {
                 System.out.println("Operation: Create news.");
-                NewsDto newsDto = new NewsDto();
+                News news = new News();
                 System.out.println("Enter news title:" );
-                newsDto.setTitle(requestEnterValue());
+                news.setTitle(requestEnterValue());
                 System.out.println("Enter news content:" );
-                newsDto.setContent(requestEnterValue());
+                news.setContent(requestEnterValue());
                 System.out.println("Enter author id:" );
-                newsDto.setAuthorId(Long.parseLong(requestEnterValue()));
-                System.out.println(NewsController.getInstance().create(newsDto));
+                news.setAuthorId(Long.parseLong(requestEnterValue()));
+                System.out.println(NewsController.getInstance().create(news));
             }
             case UpdateNews -> {
                 System.out.println("Operation: Update news.");
-                NewsDto newsDto = new NewsDto();
+                News news = new News();
                 System.out.println("Enter news id:");
-                newsDto.setId(Long.parseLong(requestEnterValue()));
+                news.setId(Long.parseLong(requestEnterValue()));
                 System.out.println("Enter news title:");
-                newsDto.setTitle(requestEnterValue());
+                news.setTitle(requestEnterValue());
                 System.out.println("Enter news content:");
-                newsDto.setContent(requestEnterValue());
+                news.setContent(requestEnterValue());
                 System.out.println("Enter author id:");
-                newsDto.setAuthorId(Long.parseLong(requestEnterValue()));
-                System.out.println(NewsController.getInstance().update(newsDto));
+                news.setAuthorId(Long.parseLong(requestEnterValue()));
+                System.out.println(NewsController.getInstance().update(news));
             }
             case DeleteNews -> {
                 System.out.println("Operation: Remove news by id.");

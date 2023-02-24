@@ -1,5 +1,5 @@
 
-import com.mjc.school.service.NewsService;
+import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.menu.Menu;
 import com.mjc.shool.contoller.operation.Command;
 import com.mjc.shool.contoller.NewsController;
@@ -32,7 +32,7 @@ public class Main {
                     new UserOperation().Operation(Command.UpdateNews);
                     continue;
                 case "5":
-                    System.out.println(Command.DeleteNews);
+                    new UserOperation().Operation(Command.DeleteNews);
                     continue;
                 case "0":
                     System.exit(0);

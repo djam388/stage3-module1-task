@@ -1,7 +1,7 @@
 package com.mjc.shool.contoller;
 
-import com.mjc.school.service.NewsService;
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.service.dto.News;
+import com.mjc.school.service.implementation.NewsService;
 
 import java.util.List;
 
@@ -16,20 +16,20 @@ public class NewsController {
         return INSTANCE;
     }
 
-    public List<NewsDto> readAllNews() {
-        return newsService.readAllNews();
+    public List<News> readAll() {
+        return newsService.readAll();
     }
 
-    public NewsDto readById(long id) {
-        return newsService.readById(id);
+    public News readBy(long id) {
+        return newsService.readBy(id);
     }
 
-    public NewsDto create(NewsDto newsDto) {
-        return newsService.create(newsDto);
+    public News create(News news) {
+        return newsService.create(news);
     }
 
-    public NewsDto update(NewsDto newsDto) {
-        return newsService.update(newsDto);
+    public News update(News news) {
+        return newsService.update(news);
     }
 
     public boolean delete(long id) {
