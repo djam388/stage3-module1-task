@@ -18,7 +18,7 @@ public class UserOperation {
                 System.out.println("Enter news id:" );
                 Scanner enteredValue = new Scanner(System.in);
                 long id = enteredValue.nextLong();
-                System.out.println(NewsController.getInstance().readBy(id));
+                System.out.println(NewsController.getInstance().readById(id));
             }
             case CreateNews -> {
                 System.out.println("Operation: Create news.");

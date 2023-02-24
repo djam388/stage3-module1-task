@@ -2,36 +2,36 @@ package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.datasources.Datasource;
 import com.mjc.school.repository.interfaces.AuthorRepositoryInterface;
-import com.mjc.school.repository.model.Author;
+import com.mjc.school.repository.model.AuthorModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorRepository implements AuthorRepositoryInterface {
 
-    private List<Author> authorList = new ArrayList<>();
+    private List<AuthorModel> authorModelList = new ArrayList<>();
 
     public AuthorRepository() {
-        authorList.addAll(Datasource.getInstance().getAuthorsAll());
+        authorModelList.addAll(Datasource.getInstance().getAuthorsAll());
     }
 
     @Override
-    public List<Author> readAllNews() {
-        return authorList;
+    public List<AuthorModel> readAllNews() {
+        return authorModelList;
     }
 
     @Override
-    public Author readById(long id) {
-        return authorList.get((int) id);
+    public AuthorModel readById(long id) {
+        return authorModelList.get((int) id);
     }
 
     @Override
-    public void update(Author author) {
-        authorList.add((int) author.getId(), author);
+    public void update(AuthorModel authorModel) {
+        authorModelList.add((int) authorModel.getId(), authorModel);
     }
 
     @Override
     public void delete(long id) {
-        authorList.remove((int) id);
+        authorModelList.remove((int) id);
     }
 }

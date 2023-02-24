@@ -1,13 +1,13 @@
 package com.mjc.school.repository.interfaces;
 
-import com.mjc.school.repository.model.Author;
+import com.mjc.school.repository.model.AuthorModel;
 
 
 import java.util.List;
 
 public interface AuthorRepositoryInterface {
-    List<Author> readAllNews();
-    Author readById (long id);
-    void update(Author author);
+    List<AuthorModel> readAllNews();
+    AuthorModel readById (long id);
+    void update(AuthorModel authorModel);
     void delete(long id);
 }

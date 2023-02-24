@@ -1,13 +1,13 @@
 package com.mjc.school.repository.interfaces;
 
-import com.mjc.school.repository.model.News;
+import com.mjc.school.repository.model.NewsModel;
 
 import java.util.List;
 
 public interface NewsRepositoryInterface {
-    List<News> readAll();
-    News readById(long id);
-    News create(News news);
-    News update(News news);
+    List<NewsModel> readAll();
+    NewsModel readById(long id);
+    NewsModel create(NewsModel newsModel);
+    NewsModel update(NewsModel newsModel);
     boolean delete(long id);
 }

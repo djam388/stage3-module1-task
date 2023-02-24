@@ -1,10 +1,10 @@
 package com.mjc.school.repository.model;
 
-public class Author {
+public class AuthorModel {
     private long id;
     private String name;
 
-    public Author(long id, String name) {
+    public AuthorModel(long id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -20,7 +20,7 @@ public class NewsController {
         return newsService.readAll();
     }
 
-    public News readBy(long id) {
+    public News readById(long id) {
         return newsService.readBy(id);
     }
 
