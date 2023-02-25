@@ -1,6 +1,6 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.datasources.Datasource;
+import com.mjc.school.repository.datasources.DataSource;
 import com.mjc.school.repository.interfaces.NewsRepositoryInterface;
 import com.mjc.school.repository.model.NewsModel;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class NewsRepository implements NewsRepositoryInterface {
 
     private final List<NewsModel> newsModelList = new ArrayList<>();
-
+    private final DataSource dataSource = DataSource.getInstance();
     public NewsRepository() {
-        Datasource datasource = Datasource.getInstance();
-        newsModelList.addAll(datasource.getNewsAll());
+
+        newsModelList.addAll(dataSource.getNewsAll());
     }
     @Override
     public List<NewsModel> readAll() {

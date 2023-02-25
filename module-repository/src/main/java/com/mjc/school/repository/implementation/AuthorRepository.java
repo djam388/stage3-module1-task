@@ -1,20 +1,18 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.datasources.Datasource;
+import com.mjc.school.repository.datasources.DataSource;
 import com.mjc.school.repository.interfaces.AuthorRepositoryInterface;
 import com.mjc.school.repository.model.AuthorModel;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorRepository implements AuthorRepositoryInterface {
-
+    private final DataSource dataSource = DataSource.getInstance();
     private final List<AuthorModel> authorModelList = new ArrayList<>();
 
     public AuthorRepository() {
-        Datasource datasource = Datasource.getInstance();
-        authorModelList.addAll(datasource.getAuthorsAll());
+        authorModelList.addAll(dataSource.getAuthorsAll());
     }
 
     @Override

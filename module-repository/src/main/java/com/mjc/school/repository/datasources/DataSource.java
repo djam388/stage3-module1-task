@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Datasource {
+public class DataSource {
     private List<NewsModel> newsModelList;
     private List<AuthorModel> authorModelList;
-    private static Datasource INSTANCE;
+    private static DataSource INSTANCE;
     private Random rnd = new Random();
 
-    private Datasource() {
+    private DataSource() {
         newsModelList = new ArrayList<>();
         authorModelList = new ArrayList<>();
         List<String> newsLines = new ArrayList<>();
@@ -58,9 +58,9 @@ public class Datasource {
 //        ));
     }
 
-    public static Datasource getInstance() {
+    public static DataSource getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new Datasource();
+            INSTANCE = new DataSource();
         }
         return INSTANCE;
     }
