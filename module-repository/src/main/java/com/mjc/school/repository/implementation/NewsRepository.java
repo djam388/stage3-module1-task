@@ -21,8 +21,8 @@ public class NewsRepository implements NewsRepositoryInterface {
     }
 
     @Override
-    public NewsModel readBy(long id) {
-        return newsModelList.get((int) id - 1);
+    public NewsModel readBy(Long id) {
+        return newsModelList.get(id.intValue() - 1);
     }
 
     @Override
@@ -47,14 +47,13 @@ public class NewsRepository implements NewsRepositoryInterface {
     }
 
     @Override
-    public boolean delete(long id) {
-        newsModelList.remove((int) id);
+    public Boolean delete(Long id) {
+        newsModelList.remove(id.intValue());
         return true;
     }
 
-    public boolean clear() {
+    public void clear() {
         newsModelList.clear();
-        return true;
     }
 
 }

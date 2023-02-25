@@ -8,7 +8,7 @@ import java.util.List;
 public interface AuthorRepositoryInterface {
     List<AuthorModel> readAll();
     AuthorModel create (AuthorModel authorModel);
-    AuthorModel readBy (long id);
+    AuthorModel readBy (Long id);
     AuthorModel update(AuthorModel authorModel);
-    boolean delete(long id);
+    Boolean delete(Long id);
 }

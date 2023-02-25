@@ -35,8 +35,8 @@ public class AuthorRepository implements AuthorRepositoryInterface {
     }
 
     @Override
-    public AuthorModel readBy(long id) {
-        return authorModelList.get((int) id - 1);
+    public AuthorModel readBy(Long id) {
+        return authorModelList.get(id.intValue() - 1);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class AuthorRepository implements AuthorRepositoryInterface {
     }
 
     @Override
-    public boolean delete(long id) {
-        authorModelList.remove((int) id);
+    public Boolean delete(Long id) {
+        authorModelList.remove(id.intValue());
         return true;
     }
 }

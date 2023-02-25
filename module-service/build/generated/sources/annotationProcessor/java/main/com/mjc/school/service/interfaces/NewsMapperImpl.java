@@ -2,14 +2,13 @@ package com.mjc.school.service.interfaces;
 
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.dto.NewsDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-24T23:48:38+0500",
+    date = "2023-02-25T15:08:20+0500",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.2.jar, environment: Java 17.0.6 (Oracle Corporation)"
 )
 public class NewsMapperImpl implements NewsMapper {
@@ -20,16 +19,16 @@ public class NewsMapperImpl implements NewsMapper {
             return null;
         }
 
-        NewsDto news = new NewsDto();
+        NewsDto newsDto = new NewsDto();
 
-        news.setId( newsModel.getId() );
-        news.setTitle( newsModel.getTitle() );
-        news.setContent( newsModel.getContent() );
-        news.setCreateDate( newsModel.getCreateDate() );
-        news.setLastUpdateDate( newsModel.getLastUpdateDate() );
-        news.setAuthorId( newsModel.getAuthorId() );
+        newsDto.setId( newsModel.getId() );
+        newsDto.setTitle( newsModel.getTitle() );
+        newsDto.setContent( newsModel.getContent() );
+        newsDto.setCreateDate( newsModel.getCreateDate() );
+        newsDto.setLastUpdateDate( newsModel.getLastUpdateDate() );
+        newsDto.setAuthorId( newsModel.getAuthorId() );
 
-        return news;
+        return newsDto;
     }
 
     @Override
