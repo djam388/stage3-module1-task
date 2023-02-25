@@ -10,10 +10,11 @@ import java.util.List;
 
 public class NewsRepository implements NewsRepositoryInterface {
 
-    private List<NewsModel> newsModelList = new ArrayList<>();
+    private final List<NewsModel> newsModelList = new ArrayList<>();
 
     public NewsRepository() {
-        newsModelList.addAll(Datasource.getInstance().getNewsAll());
+        Datasource datasource = Datasource.getInstance();
+        newsModelList.addAll(datasource.getNewsAll());
     }
     @Override
     public List<NewsModel> readAll() {
