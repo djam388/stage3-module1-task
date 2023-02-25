@@ -4,6 +4,7 @@ import com.mjc.school.repository.datasources.Datasource;
 import com.mjc.school.repository.interfaces.AuthorRepositoryInterface;
 import com.mjc.school.repository.model.AuthorModel;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,22 +17,38 @@ public class AuthorRepository implements AuthorRepositoryInterface {
     }
 
     @Override
-    public List<AuthorModel> readAllNews() {
+    public List<AuthorModel> readAll() {
         return authorModelList;
     }
 
     @Override
-    public AuthorModel readById(long id) {
-        return authorModelList.get((int) id);
+    public AuthorModel create(AuthorModel authorModel) {
+        if (authorModelList.size() > 0) {
+            authorModel.setId(authorModelList.size() + 1);
+            authorModelList.add(authorModel);
+        }
+        else {
+            authorModel.setId(1L);
+            authorModelList.add(0, authorModel);
+        }
+        return authorModel;
     }
 
     @Override
-    public void update(AuthorModel authorModel) {
-        authorModelList.add((int) authorModel.getId(), authorModel);
+    public AuthorModel readBy(long id) {
+        return authorModelList.get((int) id - 1);
     }
 
     @Override
-    public void delete(long id) {
+    public AuthorModel update(AuthorModel authorModel) {
+        authorModelList.remove((int) authorModel.getId() - 1);
+        authorModelList.add((int) authorModel.getId() - 1, authorModel);
+        return authorModel;
+    }
+
+    @Override
+    public boolean delete(long id) {
         authorModelList.remove((int) id);
+        return true;
     }
 }
