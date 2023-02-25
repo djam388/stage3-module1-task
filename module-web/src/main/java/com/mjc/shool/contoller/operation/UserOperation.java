@@ -1,6 +1,6 @@
 package com.mjc.shool.contoller.operation;
 
-import com.mjc.school.service.dto.News;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.shool.contoller.NewsController;
 
 import java.util.Scanner;
@@ -22,7 +22,7 @@ public class UserOperation {
             }
             case CreateNews -> {
                 System.out.println("Operation: Create news.");
-                News news = new News();
+                NewsDto news = new NewsDto();
                 System.out.println("Enter news title:" );
                 news.setTitle(requestEnterValue());
                 System.out.println("Enter news content:" );
@@ -33,7 +33,7 @@ public class UserOperation {
             }
             case UpdateNews -> {
                 System.out.println("Operation: Update news.");
-                News news = new News();
+                NewsDto news = new NewsDto();
                 System.out.println("Enter news id:");
                 news.setId(Long.parseLong(requestEnterValue()));
                 System.out.println("Enter news title:");

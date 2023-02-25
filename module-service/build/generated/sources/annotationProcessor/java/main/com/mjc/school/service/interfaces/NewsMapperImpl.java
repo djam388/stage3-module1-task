@@ -1,7 +1,8 @@
 package com.mjc.school.service.interfaces;
 
 import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.service.dto.News;
+import com.mjc.school.service.dto.NewsDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -14,12 +15,12 @@ import javax.annotation.processing.Generated;
 public class NewsMapperImpl implements NewsMapper {
 
     @Override
-    public News getModelFromEntity(NewsModel newsModel) {
+    public NewsDto getModelFromEntity(NewsModel newsModel) {
         if ( newsModel == null ) {
             return null;
         }
 
-        News news = new News();
+        NewsDto news = new NewsDto();
 
         news.setId( newsModel.getId() );
         news.setTitle( newsModel.getTitle() );
@@ -32,7 +33,7 @@ public class NewsMapperImpl implements NewsMapper {
     }
 
     @Override
-    public NewsModel getEntityFromModel(News news) {
+    public NewsModel getEntityFromModel(NewsDto news) {
         if ( news == null ) {
             return null;
         }
@@ -50,12 +51,12 @@ public class NewsMapperImpl implements NewsMapper {
     }
 
     @Override
-    public List<News> getModelListFromEntityList(List<NewsModel> newsModelList) {
+    public List<NewsDto> getModelListFromEntityList(List<NewsModel> newsModelList) {
         if ( newsModelList == null ) {
             return null;
         }
 
-        List<News> list = new ArrayList<News>( newsModelList.size() );
+        List<NewsDto> list = new ArrayList<NewsDto>( newsModelList.size() );
         for ( NewsModel newsModel : newsModelList ) {
             list.add( getModelFromEntity( newsModel ) );
         }

@@ -21,7 +21,7 @@ public class NewsRepository implements NewsRepositoryInterface {
     }
 
     @Override
-    public NewsModel readById(long id) {
+    public NewsModel readBy(long id) {
         return newsModelList.get((int) id - 1);
     }
 

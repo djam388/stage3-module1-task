@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NewsRepositoryInterface {
     List<NewsModel> readAll();
-    NewsModel readById(long id);
+    NewsModel readBy(long id);
     NewsModel create(NewsModel newsModel);
     NewsModel update(NewsModel newsModel);
     boolean delete(long id);
