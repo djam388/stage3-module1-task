@@ -7,7 +7,6 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 public interface AuthorMapper {
-
     AuthorMapper INSTANCE = Mappers.getMapper(AuthorMapper.class);
     AuthorDto getModelFromEntity(AuthorModel authorModel);
     AuthorModel getEntityFromModel(AuthorDto authorDto);
