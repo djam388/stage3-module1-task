@@ -7,8 +7,8 @@ import java.util.List;
 public interface NewsServiceInterface {
 
     List<NewsDto> readAll();
-    NewsDto readBy(long id);
+    NewsDto readBy(Long id);
     NewsDto create(NewsDto newsDto);
     NewsDto update(NewsDto newsDto);
-    boolean delete(long id);
+    Boolean delete(Long id);
 }

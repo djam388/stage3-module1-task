@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface AuthorServiceInterface {
     List<AuthorDto> readAll();
-    AuthorDto readBy(long id);
+    AuthorDto readBy(Long id);
     AuthorDto create(AuthorDto authorDto);
     AuthorDto update(AuthorDto authorDto);
-    boolean delete(long id);
+    Boolean delete(Long id);
 }

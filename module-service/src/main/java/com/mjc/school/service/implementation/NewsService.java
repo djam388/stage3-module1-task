@@ -11,8 +11,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class NewsService implements NewsServiceInterface {
-    private NewsRepository newsRepository = new NewsRepository();
-    private NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
+    private final NewsRepository newsRepository = new NewsRepository();
+    private final NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
 
     @Override
     public List<NewsDto> readAll() {
@@ -20,7 +20,7 @@ public class NewsService implements NewsServiceInterface {
     }
 
     @Override
-    public NewsDto readBy(long id) {
+    public NewsDto readBy(Long id) {
         return this.newsMapper.getModelFromEntity(newsRepository.readBy(id));
     }
 
@@ -39,9 +39,9 @@ public class NewsService implements NewsServiceInterface {
     }
 
     @Override
-    public boolean delete(long id) {
+    public Boolean delete(Long id) {
 
-        if (readAll().size() >= (int) id) {
+        if (readAll().size() >= id) {
             newsRepository.delete(id - 1);
             return true;
         }
