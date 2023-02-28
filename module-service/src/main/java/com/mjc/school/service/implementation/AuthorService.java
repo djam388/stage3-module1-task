@@ -16,19 +16,9 @@ public class AuthorService implements AuthorServiceInterface {
     private Validator validator = new Validator();
 
 
-    private static AuthorService INSTANCE;
-
-    private AuthorService() {
+    public AuthorService() {
 
     }
-
-    public static AuthorService getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new AuthorService();
-        }
-        return INSTANCE;
-    }
-
 
     @Override
     public List<AuthorDto> readAll() {
@@ -53,7 +43,7 @@ public class AuthorService implements AuthorServiceInterface {
 
     @Override
     public Boolean delete(Long id) {
-        if (validator.validateAuthorId(id)) {
+        if (readAll().size() >= id) {
             authorRepository.delete(id - 1);
             return true;
         }

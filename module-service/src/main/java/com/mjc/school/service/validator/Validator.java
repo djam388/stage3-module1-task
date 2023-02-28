@@ -1,8 +1,12 @@
 package com.mjc.school.service.validator;
 
 
+import com.mjc.school.service.dto.AuthorDto;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.implementation.AuthorService;
 import com.mjc.school.service.implementation.NewsService;
+
+import java.util.List;
 
 public class Validator {
 
@@ -17,8 +21,8 @@ public class Validator {
             return null;
         }
     }
-    public Boolean validateId(Long id) {
-        if (id <= NewsService.getInstance().readAll().size()) {
+    public Boolean validateId(Long id, List<NewsDto> newsDtoList) {
+        if (id <= newsDtoList.size()) {
             return true;
         }
         else {
@@ -43,16 +47,16 @@ public class Validator {
         return false;
     }
 
-    public Boolean validateNewsId(Long id) {
-        if (id > NewsService.getInstance().readAll().size()) {
+    public Boolean validateNewsId(Long id, List<NewsDto> newsDtoList) {
+        if (id > newsDtoList.size()) {
             System.out.printf("ERROR_CODE: 000001 ERROR_MESSAGE: News with id %s does not exist.\n", id);
             return false;
         }
         return true;
     }
 
-    public Boolean validateAuthorId(Long id) {
-        if (id > AuthorService.getInstance().readAll().size()) {
+    public Boolean validateAuthorId(Long id, List<AuthorDto> authorDtoList) {
+        if (id > authorDtoList.size()) {
             System.out.printf("ERROR_CODE: 000002 ERROR_MESSAGE: Author Id does not exist. Author Id is: %s\n", id);
             return false;
         }

@@ -18,18 +18,12 @@ public class NewsService implements NewsServiceInterface {
 
 
     private final Validator validator = new Validator();
-    private static NewsService INSTANCE;
 
-    private NewsService () {
+
+    public NewsService () {
 
     }
 
-    public static NewsService getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new NewsService();
-        }
-        return INSTANCE;
-    }
 
     @Override
     public List<NewsDto> readAll() {
@@ -38,7 +32,7 @@ public class NewsService implements NewsServiceInterface {
 
     @Override
     public NewsDto readBy(Long id) {
-        if (validator.validateId(id)) {
+        if (validator.validateId(id, readAll())) {
             return this.newsMapper.getModelFromEntity(newsRepository.readBy(id));
         }
         return null;
@@ -72,7 +66,7 @@ public class NewsService implements NewsServiceInterface {
     @Override
     public Boolean delete(Long id) {
 
-        if (validator.validateId(id)) {
+        if (validator.validateId(id, readAll())) {
             newsRepository.delete(id);
             return true;
         }
@@ -88,7 +82,7 @@ public class NewsService implements NewsServiceInterface {
 
     private Boolean validateScope(NewsDto newsDto) {
         Boolean validated = false;
-        if (validator.validateNewsId(newsDto.getId())) {
+        if (validator.validateNewsId(newsDto.getId(), readAll())) {
             validated = true;
         }
         if (validator.validateTitleLength(newsDto.getTitle()) && validated) {
@@ -97,7 +91,7 @@ public class NewsService implements NewsServiceInterface {
         if (validator.validateContentLength(newsDto.getContent()) && validated) {
             validated = true;
         }
-        if (validator.validateAuthorId(newsDto.getAuthorId())) {
+        if (validator.validateAuthorId(newsDto.getAuthorId(), new AuthorService().readAll())) {
             validated = true;
         }
         else {
