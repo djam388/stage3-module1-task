@@ -37,7 +37,7 @@ public class UserOperation {
                 System.out.println("Enter news id:");
                 newsDto.setId(Long.parseLong(requestEnterValue()));
 
-                newsDto = NewsController.getInstance().create(enterNewsData(newsDto));
+                newsDto = NewsController.getInstance().update(enterNewsData(newsDto));
                 if (newsDto != null) {
                     System.out.println(newsDto);
                 }

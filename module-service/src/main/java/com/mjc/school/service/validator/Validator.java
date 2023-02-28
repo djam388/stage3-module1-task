@@ -1,7 +1,6 @@
 package com.mjc.school.service.validator;
 
-import com.mjc.school.repository.implementation.AuthorRepository;
-import com.mjc.school.repository.implementation.NewsRepository;
+
 import com.mjc.school.service.implementation.AuthorService;
 import com.mjc.school.service.implementation.NewsService;
 
@@ -53,7 +52,7 @@ public class Validator {
     }
 
     public Boolean validateAuthorId(Long id) {
-        if (id > NewsService.getInstance().readAll().size()) {
+        if (id > AuthorService.getInstance().readAll().size()) {
             System.out.printf("ERROR_CODE: 000002 ERROR_MESSAGE: Author Id does not exist. Author Id is: %s\n", id);
             return false;
         }

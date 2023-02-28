@@ -14,6 +14,9 @@ import java.util.List;
 public class NewsService implements NewsServiceInterface {
     private final NewsRepository newsRepository = new NewsRepository();
     private final NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
+
+
+
     private final Validator validator = new Validator();
     private static NewsService INSTANCE;
 
@@ -110,7 +113,7 @@ public class NewsService implements NewsServiceInterface {
             news.setLastUpdateDate(localDateTime);
         }
         else {
-            NewsDto originalNews = readBy(news.getId() - 1);
+            NewsDto originalNews = readBy(news.getId());
             news.setCreateDate(originalNews.getCreateDate());
             news.setLastUpdateDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         }

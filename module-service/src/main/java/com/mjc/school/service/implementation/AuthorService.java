@@ -4,6 +4,7 @@ import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.service.dto.AuthorDto;
 import com.mjc.school.service.interfaces.AuthorMapper;
 import com.mjc.school.service.interfaces.AuthorServiceInterface;
+import com.mjc.school.service.validator.Validator;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -11,10 +12,21 @@ import java.util.List;
 public class AuthorService implements AuthorServiceInterface {
     private final AuthorRepository authorRepository = new AuthorRepository();
     private final AuthorMapper authorMapper = Mappers.getMapper(AuthorMapper.class);
+
+    private Validator validator = new Validator();
+
+
     private static AuthorService INSTANCE;
 
-    public AuthorService() {
+    private AuthorService() {
 
+    }
+
+    public static AuthorService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AuthorService();
+        }
+        return INSTANCE;
     }
 
 
@@ -41,7 +53,7 @@ public class AuthorService implements AuthorServiceInterface {
 
     @Override
     public Boolean delete(Long id) {
-        if (readAll().size() >= id) {
+        if (validator.validateAuthorId(id)) {
             authorRepository.delete(id - 1);
             return true;
         }
