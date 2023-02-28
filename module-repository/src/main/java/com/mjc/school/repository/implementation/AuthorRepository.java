@@ -10,9 +10,17 @@ import java.util.List;
 public class AuthorRepository implements AuthorRepositoryInterface {
     private final DataSource dataSource = DataSource.getInstance();
     private final List<AuthorModel> authorModelList = new ArrayList<>();
+    private static AuthorRepository INSTANCE;
 
-    public AuthorRepository() {
+    private AuthorRepository() {
         authorModelList.addAll(dataSource.getAuthorsAll());
+    }
+
+    public static AuthorRepository getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AuthorRepository();
+        }
+        return INSTANCE;
     }
 
     @Override

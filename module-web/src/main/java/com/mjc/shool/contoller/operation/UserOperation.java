@@ -1,6 +1,7 @@
 package com.mjc.shool.contoller.operation;
 
 import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.service.validator.Validator;
 import com.mjc.shool.contoller.NewsController;
 
 import java.util.Scanner;
@@ -14,43 +15,61 @@ public class UserOperation {
                  NewsController.getInstance().readAll().forEach(System.out::println);
              }
             case ShowNewsById -> {
-                System.out.println("Operation: Get news by id.");
-                System.out.println("Enter news id:" );
-                Scanner enteredValue = new Scanner(System.in);
-                long id = enteredValue.nextLong();
-                System.out.println(NewsController.getInstance().readById(id));
+                NewsDto newsDto = NewsController
+                        .getInstance()
+                        .readById(enterId("Operation: Get news by id.\nEnter news id:"));
+                if (newsDto != null){
+                    System.out.println(newsDto);
+                }
             }
             case CreateNews -> {
+                NewsDto newsDto = new NewsDto();
+
                 System.out.println("Operation: Create news.");
-                NewsDto news = new NewsDto();
-                System.out.println("Enter news title:" );
-                news.setTitle(requestEnterValue());
-                System.out.println("Enter news content:" );
-                news.setContent(requestEnterValue());
-                System.out.println("Enter author id:" );
-                news.setAuthorId(Long.parseLong(requestEnterValue()));
-                System.out.println(NewsController.getInstance().create(news));
+                newsDto = NewsController.getInstance().create(enterNewsData(newsDto));
+                if (newsDto != null) {
+                    System.out.println(newsDto);
+                }
             }
             case UpdateNews -> {
+                NewsDto newsDto = new NewsDto();
                 System.out.println("Operation: Update news.");
-                NewsDto news = new NewsDto();
                 System.out.println("Enter news id:");
-                news.setId(Long.parseLong(requestEnterValue()));
-                System.out.println("Enter news title:");
-                news.setTitle(requestEnterValue());
-                System.out.println("Enter news content:");
-                news.setContent(requestEnterValue());
-                System.out.println("Enter author id:");
-                news.setAuthorId(Long.parseLong(requestEnterValue()));
-                System.out.println(NewsController.getInstance().update(news));
+                newsDto.setId(Long.parseLong(requestEnterValue()));
+
+                newsDto = NewsController.getInstance().create(enterNewsData(newsDto));
+                if (newsDto != null) {
+                    System.out.println(newsDto);
+                }
             }
             case DeleteNews -> {
-                System.out.println("Operation: Remove news by id.");
-                System.out.println("Enter news id:");
-                long id = Long.parseLong(requestEnterValue());
-                System.out.println(NewsController.getInstance().delete(id));
+                System.out.println(NewsController
+                        .getInstance()
+                        .delete(enterId("Operation: Remove news by id.\nEnter news id:")));
             }
         }
+
+    }
+    private NewsDto enterNewsData(NewsDto newsDto) {
+        System.out.println("Enter news title:");
+        newsDto.setTitle(requestEnterValue());
+        System.out.println("Enter news content:");
+        newsDto.setContent(requestEnterValue());
+        newsDto.setAuthorId(enterId("Enter author id:"));
+        return newsDto;
+    }
+    private Long enterId (String operationType) {
+        Boolean isNumber = false;
+        Long enteredId;
+        do {
+            System.out.println(operationType);
+            enteredId = new Validator().validateNewsReadBy(requestEnterValue());
+            if (enteredId != null) {
+                isNumber = true;
+            }
+        }
+        while (!isNumber);
+        return enteredId;
     }
     private String requestEnterValue() {
         Scanner typedValue = new Scanner(System.in);

@@ -9,11 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsRepository implements NewsRepositoryInterface {
-
+    private static NewsRepository INSTANCE;
     private final List<NewsModel> newsModelList = new ArrayList<>();
     private final DataSource dataSource = DataSource.getInstance();
-    public NewsRepository() {
 
+    public static NewsRepository getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new NewsRepository();
+        }
+        return INSTANCE;
+    }
+    private NewsRepository() {
         newsModelList.addAll(dataSource.getNewsAll());
     }
     @Override
@@ -49,7 +55,7 @@ public class NewsRepository implements NewsRepositoryInterface {
 
     @Override
     public Boolean delete(Long id) {
-        newsModelList.remove(id.intValue());
+        newsModelList.remove(id.intValue() - 1);
         return true;
     }
 

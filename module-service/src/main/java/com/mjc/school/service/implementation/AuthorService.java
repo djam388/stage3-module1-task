@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 public class AuthorService implements AuthorServiceInterface {
-    private final AuthorRepository authorRepository = new AuthorRepository();
+    private final AuthorRepository authorRepository = AuthorRepository.getInstance();
     private final AuthorMapper authorMapper = Mappers.getMapper(AuthorMapper.class);
     @Override
     public List<AuthorDto> readAll() {
