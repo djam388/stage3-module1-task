@@ -6,7 +6,7 @@ import com.mjc.school.service.implementation.NewsService;
 import java.util.List;
 
 public class NewsController {
-    NewsService newsService = new NewsService();
+    NewsService newsService = NewsService.getInstance();
     private static NewsController INSTANCE;
 
     public static NewsController getInstance() {

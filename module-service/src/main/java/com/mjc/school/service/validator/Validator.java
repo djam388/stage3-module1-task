@@ -2,9 +2,11 @@ package com.mjc.school.service.validator;
 
 import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.repository.implementation.NewsRepository;
+import com.mjc.school.service.implementation.AuthorService;
+import com.mjc.school.service.implementation.NewsService;
 
 public class Validator {
-    NewsRepository newsRepository = NewsRepository.getInstance();
+
     public Long validateNewsReadBy(String value) {
         try
         {
@@ -17,7 +19,7 @@ public class Validator {
         }
     }
     public Boolean validateId(Long id) {
-        if (id <= newsRepository.readAll().size()) {
+        if (id <= NewsService.getInstance().readAll().size()) {
             return true;
         }
         else {
@@ -43,7 +45,7 @@ public class Validator {
     }
 
     public Boolean validateNewsId(Long id) {
-        if (id > newsRepository.readAll().size()) {
+        if (id > NewsService.getInstance().readAll().size()) {
             System.out.printf("ERROR_CODE: 000001 ERROR_MESSAGE: News with id %s does not exist.\n", id);
             return false;
         }
@@ -51,7 +53,7 @@ public class Validator {
     }
 
     public Boolean validateAuthorId(Long id) {
-        if (id > AuthorRepository.getInstance().readAll().size()) {
+        if (id > NewsService.getInstance().readAll().size()) {
             System.out.printf("ERROR_CODE: 000002 ERROR_MESSAGE: Author Id does not exist. Author Id is: %s\n", id);
             return false;
         }

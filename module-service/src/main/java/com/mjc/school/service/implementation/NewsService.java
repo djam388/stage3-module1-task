@@ -12,9 +12,21 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class NewsService implements NewsServiceInterface {
-    private final NewsRepository newsRepository = NewsRepository.getInstance();
+    private final NewsRepository newsRepository = new NewsRepository();
     private final NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
     private final Validator validator = new Validator();
+    private static NewsService INSTANCE;
+
+    private NewsService () {
+
+    }
+
+    public static NewsService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new NewsService();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public List<NewsDto> readAll() {

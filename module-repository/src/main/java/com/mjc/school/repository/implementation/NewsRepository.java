@@ -9,17 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsRepository implements NewsRepositoryInterface {
-    private static NewsRepository INSTANCE;
+
     private final List<NewsModel> newsModelList = new ArrayList<>();
     private final DataSource dataSource = DataSource.getInstance();
 
-    public static NewsRepository getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new NewsRepository();
-        }
-        return INSTANCE;
-    }
-    private NewsRepository() {
+
+    public NewsRepository() {
         newsModelList.addAll(dataSource.getNewsAll());
     }
     @Override
