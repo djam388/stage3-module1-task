@@ -1,7 +1,7 @@
-package com.mjc.school.repository.datasource;
+package com.mjc.school.datasource;
 
-import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.model.NewsModel;
+import com.mjc.school.model.AuthorModel;
+import com.mjc.school.model.NewsModel;
 
 
 import java.io.InputStream;

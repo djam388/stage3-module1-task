@@ -1,16 +1,16 @@
-package com.mjc.school.service.implementation;
+package com.mjc.school.implementation;
 
-import com.mjc.school.repository.implementation.NewsRepository;
-import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.interfaces.NewsMapper;
-import com.mjc.school.service.validator.HandledException;
-import com.mjc.school.service.validator.Validator;
+import com.mjc.school.dto.NewsDto;
+import com.mjc.school.service.News;
+import com.mjc.school.mapper.NewsMapper;
+import com.mjc.school.validator.HandledException;
+import com.mjc.school.validator.Validator;
 import org.mapstruct.factory.Mappers;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class NewsService implements com.mjc.school.service.interfaces.NewsService {
+public class NewsService implements News {
     private final NewsRepository newsRepository = new NewsRepository();
     private final NewsMapper newsMapper = Mappers.getMapper(NewsMapper.class);
     private final Validator validator = new Validator();
@@ -32,7 +32,7 @@ public class NewsService implements com.mjc.school.service.interfaces.NewsServic
             }
         }
         catch (HandledException handledException) {
-            handledException.printStackTrace();
+            System.out.println(handledException.getMessage());
         }
     return null;
 
@@ -56,11 +56,13 @@ public class NewsService implements com.mjc.school.service.interfaces.NewsServic
 
     @Override
     public NewsDto update(NewsDto newsDto) {
-        setDateTime(newsDto, false);
         try {
-            if (validator.validateScope(newsDto, readAll())) {
-                newsDto.setId(newsRepository.update(newsMapper.getEntityFromModel(newsDto)).getId());
-                return newsDto;
+            if (validator.validateNewsId(newsDto.getId(), readAll())) {
+                setDateTime(newsDto, false);
+                if (validator.validateScope(newsDto, readAll())) {
+                    newsDto.setId(newsRepository.update(newsMapper.getEntityFromModel(newsDto)).getId());
+                    return newsDto;
+                }
             }
         }
         catch (HandledException handledException) {
@@ -80,7 +82,7 @@ public class NewsService implements com.mjc.school.service.interfaces.NewsServic
             }
         }
         catch (HandledException handledException) {
-            handledException.printStackTrace();
+            System.out.println(handledException.getMessage());
         }
         return false;
     }

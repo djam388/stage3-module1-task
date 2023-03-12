@@ -1,16 +1,17 @@
-package com.mjc.school.repository.implementation;
+package com.mjc.school.implementation;
 
-import com.mjc.school.repository.datasource.DataSource;
-import com.mjc.school.repository.model.AuthorModel;
+import com.mjc.school.datasource.DataSource;
+import com.mjc.school.repository.Author;
+import com.mjc.school.model.AuthorModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthorRepository implements com.mjc.school.repository.interfaces.AuthorRepository {
-    private final DataSource dataSource = DataSource.getInstance();
+public class AuthorRepository implements Author {
     private final List<AuthorModel> authorModelList = new ArrayList<>();
 
     public AuthorRepository() {
+        DataSource dataSource = DataSource.getInstance();
         authorModelList.addAll(dataSource.getAuthorsAll());
     }
 

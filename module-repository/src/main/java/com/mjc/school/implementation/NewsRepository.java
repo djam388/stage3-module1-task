@@ -1,19 +1,20 @@
-package com.mjc.school.repository.implementation;
+package com.mjc.school.implementation;
 
-import com.mjc.school.repository.datasource.DataSource;
-import com.mjc.school.repository.model.NewsModel;
+import com.mjc.school.datasource.DataSource;
+import com.mjc.school.repository.News;
+import com.mjc.school.model.NewsModel;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsRepository implements com.mjc.school.repository.interfaces.NewsRepository {
+public class NewsRepository implements News {
 
     private final List<NewsModel> newsModelList = new ArrayList<>();
-    private final DataSource dataSource = DataSource.getInstance();
 
 
     public NewsRepository() {
+        DataSource dataSource = DataSource.getInstance();
         newsModelList.addAll(dataSource.getNewsAll());
     }
     @Override
@@ -29,7 +30,7 @@ public class NewsRepository implements com.mjc.school.repository.interfaces.News
     @Override
     public NewsModel create(NewsModel newsModel) {
 
-            newsModel.setId(newsModelList.size() + 1);
+            newsModel.setId(newsModelList.size());
             newsModelList.add(newsModel);
 
         return newsModel;
@@ -37,7 +38,6 @@ public class NewsRepository implements com.mjc.school.repository.interfaces.News
 
     @Override
     public NewsModel update(NewsModel newsModel) {
-        LocalDateTime dateTime = newsModelList.get((int) newsModel.getId()).getCreateDate();
         newsModelList.set((int) newsModel.getId(), newsModel);
         return newsModel;
     }
@@ -46,10 +46,6 @@ public class NewsRepository implements com.mjc.school.repository.interfaces.News
     public Boolean delete(Long id) {
         newsModelList.remove(id.intValue());
         return true;
-    }
-
-    public void clear() {
-        newsModelList.clear();
     }
 
 }

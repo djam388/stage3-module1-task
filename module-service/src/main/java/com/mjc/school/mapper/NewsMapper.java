@@ -1,15 +1,13 @@
-package com.mjc.school.service.interfaces;
+package com.mjc.school.mapper;
 
-import com.mjc.school.repository.model.NewsModel;
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.model.NewsModel;
+import com.mjc.school.dto.NewsDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper
 public interface NewsMapper {
-    NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
     NewsDto getModelFromEntity(NewsModel newsModel);
     NewsModel getEntityFromModel(NewsDto news);
     List<NewsDto> getModelListFromEntityList(List<NewsModel> newsModelList);

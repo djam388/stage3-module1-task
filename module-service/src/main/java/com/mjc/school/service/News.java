@@ -1,10 +1,10 @@
-package com.mjc.school.service.interfaces;
+package com.mjc.school.service;
 
-import com.mjc.school.service.dto.NewsDto;
+import com.mjc.school.dto.NewsDto;
 
 import java.util.List;
 
-public interface NewsService {
+public interface News {
 
     List<NewsDto> readAll();
     NewsDto readBy(Long id);

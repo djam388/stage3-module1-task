@@ -1,4 +1,4 @@
-package com.mjc.school.service.validator;
+package com.mjc.school.validator;
 
 public class HandledException extends Exception{
     public HandledException (String code, String message) {

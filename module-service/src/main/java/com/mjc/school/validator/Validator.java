@@ -1,9 +1,9 @@
-package com.mjc.school.service.validator;
+package com.mjc.school.validator;
 
 
-import com.mjc.school.service.dto.AuthorDto;
-import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.implementation.AuthorService;
+import com.mjc.school.dto.AuthorDto;
+import com.mjc.school.dto.NewsDto;
+import com.mjc.school.implementation.AuthorService;
 
 import java.util.List;
 

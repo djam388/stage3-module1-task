@@ -1,10 +1,10 @@
-package com.mjc.school.service.interfaces;
+package com.mjc.school.service;
 
-import com.mjc.school.service.dto.AuthorDto;
+import com.mjc.school.dto.AuthorDto;
 
 import java.util.List;
 
-public interface AuthorService {
+public interface Author {
     List<AuthorDto> readAll();
     AuthorDto readBy(Long id);
     AuthorDto create(AuthorDto authorDto);

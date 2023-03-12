@@ -1,14 +1,14 @@
-package com.mjc.school.service.implementation;
+package com.mjc.school.implementation;
 
-import com.mjc.school.repository.implementation.AuthorRepository;
-import com.mjc.school.service.dto.AuthorDto;
-import com.mjc.school.service.interfaces.AuthorMapper;
+import com.mjc.school.dto.AuthorDto;
+import com.mjc.school.service.Author;
+import com.mjc.school.mapper.AuthorMapper;
 
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-public class AuthorService implements com.mjc.school.service.interfaces.AuthorService {
+public class AuthorService implements Author {
     private final AuthorRepository authorRepository = new AuthorRepository();
     private final AuthorMapper authorMapper = Mappers.getMapper(AuthorMapper.class);
 
