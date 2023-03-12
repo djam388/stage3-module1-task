@@ -1,8 +1,8 @@
-package com.mjc.shool.contoller.operation;
+package com.mjc.school.controller.operation;
 
 import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.validator.Validator;
-import com.mjc.shool.contoller.NewsController;
+import com.mjc.school.controller.NewsController;
 
 import java.util.Scanner;
 

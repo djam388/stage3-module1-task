@@ -1,9 +1,10 @@
 
 import com.mjc.school.service.implementation.NewsService;
-import com.mjc.school.service.menu.Menu;
-import com.mjc.shool.contoller.operation.Command;
-import com.mjc.shool.contoller.NewsController;
-import com.mjc.shool.contoller.operation.UserOperation;
+import com.mjc.school.menu.Menu;
+
+import com.mjc.school.controller.operation.Command;
+import com.mjc.school.controller.NewsController;
+import com.mjc.school.controller.operation.UserOperation;
 
 import java.util.Scanner;
 

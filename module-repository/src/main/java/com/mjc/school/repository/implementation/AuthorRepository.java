@@ -1,13 +1,12 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.datasources.DataSource;
-import com.mjc.school.repository.interfaces.AuthorRepositoryInterface;
+import com.mjc.school.repository.datasource.DataSource;
 import com.mjc.school.repository.model.AuthorModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthorRepository implements AuthorRepositoryInterface {
+public class AuthorRepository implements com.mjc.school.repository.interfaces.AuthorRepository {
     private final DataSource dataSource = DataSource.getInstance();
     private final List<AuthorModel> authorModelList = new ArrayList<>();
 
@@ -22,26 +21,21 @@ public class AuthorRepository implements AuthorRepositoryInterface {
 
     @Override
     public AuthorModel create(AuthorModel authorModel) {
-        if (authorModelList.size() > 0) {
+
             authorModel.setId(authorModelList.size() + 1);
             authorModelList.add(authorModel);
-        }
-        else {
-            authorModel.setId(1L);
-            authorModelList.add(0, authorModel);
-        }
+
         return authorModel;
     }
 
     @Override
     public AuthorModel readBy(Long id) {
-        return authorModelList.get(id.intValue() - 1);
+        return authorModelList.get(id.intValue());
     }
 
     @Override
     public AuthorModel update(AuthorModel authorModel) {
-        authorModelList.remove((int) authorModel.getId() - 1);
-        authorModelList.add((int) authorModel.getId() - 1, authorModel);
+        authorModelList.set((int) authorModel.getId(), authorModel);
         return authorModel;
     }
 

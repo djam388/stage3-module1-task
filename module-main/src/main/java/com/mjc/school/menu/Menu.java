@@ -1,4 +1,4 @@
-package com.mjc.school.service.menu;
+package com.mjc.school.menu;
 
 public class Menu {
 

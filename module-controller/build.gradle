@@ -14,9 +14,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation project(':module-service')
     implementation project(':module-repository')
-    implementation project(':module-web')
-    implementation project(':module-controller')
-
 }
 
 test {

@@ -4,7 +4,7 @@ import com.mjc.school.service.dto.NewsDto;
 
 import java.util.List;
 
-public interface NewsServiceInterface {
+public interface NewsService {
 
     List<NewsDto> readAll();
     NewsDto readBy(Long id);

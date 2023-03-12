@@ -1,4 +1,4 @@
-package com.mjc.shool.contoller.operation;
+package com.mjc.school.controller.operation;
 
 public enum Command {
     ShowNewsList,

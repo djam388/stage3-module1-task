@@ -5,7 +5,7 @@ import com.mjc.school.repository.model.AuthorModel;
 
 import java.util.List;
 
-public interface AuthorRepositoryInterface {
+public interface AuthorRepository {
     List<AuthorModel> readAll();
     AuthorModel create (AuthorModel authorModel);
     AuthorModel readBy (Long id);

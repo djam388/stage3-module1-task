@@ -4,7 +4,7 @@ import com.mjc.school.service.dto.AuthorDto;
 
 import java.util.List;
 
-public interface AuthorServiceInterface {
+public interface AuthorService {
     List<AuthorDto> readAll();
     AuthorDto readBy(Long id);
     AuthorDto create(AuthorDto authorDto);

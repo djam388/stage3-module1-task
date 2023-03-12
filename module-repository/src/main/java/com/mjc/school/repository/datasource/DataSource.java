@@ -1,4 +1,4 @@
-package com.mjc.school.repository.datasources;
+package com.mjc.school.repository.datasource;
 
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.model.NewsModel;
@@ -34,13 +34,13 @@ public class DataSource {
 
 
         for (int i = 0; i < countAuthorLines; i++) {
-            authorModelList.add(i, new AuthorModel(i + 1, authorLines.get(i)));
+            authorModelList.add(i, new AuthorModel(i, authorLines.get(i)));
 
         }
 
         for (int i = 0; i < countNewsLines; i++) {
             LocalDateTime date = getRandomDate();
-            newsModelList.add(i, new NewsModel(i + 1,
+            newsModelList.add(i, new NewsModel(i,
                     titleLines.get(i),
                     newsLines.get(i),
                     date,
@@ -48,14 +48,6 @@ public class DataSource {
                     authorModelList.get(i).getId()));
         }
 
-//        newsList.add(new News(
-//            id,
-//            title,
-//            content,
-//            createDate,
-//            lastUpdateDate,
-//            authorId
-//        ));
     }
 
     public static DataSource getInstance() {
