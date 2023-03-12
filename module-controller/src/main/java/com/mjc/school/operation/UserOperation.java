@@ -1,9 +1,7 @@
 package com.mjc.school.operation;
 
 import com.mjc.school.dto.NewsDto;
-import com.mjc.school.validator.HandledException;
 import com.mjc.school.validator.Validator;
-
 import java.util.Scanner;
 
 public class UserOperation {

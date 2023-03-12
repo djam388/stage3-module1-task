@@ -3,7 +3,6 @@ import com.mjc.school.dto.NewsDto;
 import com.mjc.school.menu.Menu;
 import com.mjc.school.controller.NewsController;
 import com.mjc.school.operation.UserOperation;
-import com.mjc.school.validator.HandledException;
 
 import java.util.Scanner;
 
