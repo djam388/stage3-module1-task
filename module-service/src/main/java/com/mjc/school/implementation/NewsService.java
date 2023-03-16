@@ -27,9 +27,8 @@ public class NewsService implements News {
     @Override
     public NewsDto readBy(Long id) {
         try {
-            if (validator.validateId(id, readAll())) {
-                return newsMapper.getModelFromEntity(newsRepository.readBy(id));
-            }
+            validator.validateId(id, readAll());
+            return newsMapper.getModelFromEntity(newsRepository.readBy(id));
         }
         catch (HandledException handledException) {
             System.out.println(handledException.getMessage());
@@ -40,51 +39,46 @@ public class NewsService implements News {
 
     @Override
     public NewsDto create(NewsDto newsDto) {
-
-        setDateTime(newsDto, true);
-
         try {
-            if (validator.validateScope(newsDto, readAll())) {
-                return newsMapper.getModelFromEntity(newsRepository.create(newsMapper.getEntityFromModel(newsDto)));
-            }
-        }
-        catch (HandledException handledException) {
+            validator.validateTitleLength(newsDto.getTitle());
+            validator.validateContentLength(newsDto.getContent());
+        } catch (HandledException handledException) {
             System.out.println(handledException.getMessage());
+            return null;
         }
-        return null;
+        setDateTime(newsDto, true);
+        return newsMapper.getModelFromEntity(newsRepository.create(newsMapper.getEntityFromModel(newsDto)));
     }
 
     @Override
     public NewsDto update(NewsDto newsDto) {
         try {
-            if (validator.validateNewsId(newsDto.getId(), readAll())) {
-                setDateTime(newsDto, false);
-                if (validator.validateScope(newsDto, readAll())) {
-                    newsDto.setId(newsRepository.update(newsMapper.getEntityFromModel(newsDto)).getId());
-                    return newsDto;
-                }
-            }
-        }
-        catch (HandledException handledException) {
+            validator.validateNewsId(newsDto.getId(), readAll());
+            validator.validateTitleLength(newsDto.getTitle());
+            validator.validateContentLength(newsDto.getContent());
+        } catch (HandledException handledException) {
             System.out.println(handledException.getMessage());
+            return null;
         }
+        setDateTime(newsDto, false);
+        newsDto.setId(newsRepository.update(newsMapper.getEntityFromModel(newsDto)).getId());
+        return newsDto;
 
-        return null;
     }
 
     @Override
     public Boolean delete(Long id) {
 
         try {
-            if (validator.validateId(id, readAll())) {
-                newsRepository.delete(id);
-                return true;
-            }
+            validator.validateId(id, readAll());
+            newsRepository.delete(id);
+            return true;
+
         }
         catch (HandledException handledException) {
             System.out.println(handledException.getMessage());
+            return false;
         }
-        return false;
     }
 
     private void setDateTime(NewsDto news, boolean newRecord) {
